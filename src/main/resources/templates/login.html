@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ICanCook</title>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="css/login_registration.css">
+</head>
+<body style="background-image: url(images/dessert1.png); background-repeat: no-repeat;">
+<header >
+    <a href="#" class="logo"><i class="fas fa-utensils"></i> ICanCook.</a>
+    <div>LOGIN</div>
+    <a href="#" class="help">DO YOU NEED TO HELP?</a>
+</header>
+<section class="login-form">
+    <form action="/checkLogin" method="POST">
+        <div>Login Form</div>
+        <input type="text" placeholder="   Email/Phone number/User name" name="userName">
+        <br>
+        <input type="password" placeholder="   Enter password" name="password">
+        <input style="background: orange; color: white;"type="submit" value="Login ">
+        <p style="color: red; text-align: center" th:text="${ERR}" ></p>
+        <div class="support">
+            <a class="forget" href="#">Forget password</a>
+            <a class="sms" href="#">Login with SMS</a>
+        </div>
+        <div class="login-social" >
+            <div class="icon" >
+                <a href="#" class="logo-social"><i class="fab fa-facebook" ></i></a>
+                <a href="#" class="name-social">Facebook</a>
+            </div>
+            <div class="icon2">
+                <a href="#" class="logo-social"><i class="fab fa-google" ></i></a>
+                <a href="#" class="name-social">Google</a>
+            </div>
+        </div>
+        <div class="sign-in">
+            <div>Don't you know ICanCook? <a href="register">Sign in</a></div>
+        </div>
+    </form>
+</section>
+</body>
+</html>

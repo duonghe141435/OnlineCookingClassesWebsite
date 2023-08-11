@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Swiper Example</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css" />
+</head>
+<body>
+
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <div class="content">
+                <h3>Bún mọc</h3>
+                <p>Món ăn truyền thống và rất được ưa chuộng tại Việt Nam, nguyên liệu dễ
+                    làm, dễ kiếm. Là món ăn thích hợp cho bữa sáng
+                </p>
+                <a href="#" class="btn">Xem thêm</a>
+            </div>
+            <div class="image">
+                <img src="images/home-food2.png" alt="">
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="content">
+                <h3>Bún mọc</h3>
+                <p>Món ăn truyền thống và rất được ưa chuộng tại Việt Nam, nguyên liệu dễ
+                    làm, dễ kiếm. Là món ăn thích hợp cho bữa sáng
+                </p>
+                <a href="#" class="btn">Xem thêm</a>
+            </div>
+            <div class="image">
+                <img src="images/home-food1.png" alt="">
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="content">
+                <h3>Bún mọc</h3>
+                <p>Món ăn truyền thống và rất được ưa chuộng tại Việt Nam, nguyên liệu dễ
+                    làm, dễ kiếm. Là món ăn thích hợp cho bữa sáng
+                </p>
+                <a href="#" class="btn">Xem thêm</a>
+            </div>
+            <div class="image">
+                <img src="images/home-food3.png" alt="">
+            </div>
+        </div>
+        <!-- Thêm các slide khác nếu cần -->
+    </div>
+    <!-- Điểm phân trang (pagination) -->
+    <div class="swiper-pagination"></div>
+</div>
+
+<script src="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.js"></script>
+<script>
+    var swiper = new Swiper(".swiper-container", {
+        slidesPerView: 1,
+        spaceBetween: 10,
+        autoplay: {
+            delay: 3000, // Đặt khoảng thời gian tự động trượt slide (đơn vị: milisecond)
+            disableOnInteraction: false, // Tự động trượt slide vẫn hoạt động sau khi người dùng chạm vào swiper
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ICanCook</title>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!--<link rel="stylesheet" href="style.css">-->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="css/style.css">
+    <!--<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>-->
+</head>
+<body>
+<header>
+    <p th:text="'Wellcome'+${session.username}"></p>
+    <a href="#" class="logo"><i class="fas fa-utensils"></i> ICanCook.</a>
+    <nav class="navbar">
+        <a class="active" href="#home">Home</a>
+        <a clas="food" href="#Food">Food</a>
+        <a clas="dessert" href="#Dessert">Dessert</a>
+        <a clas="souces" href="#Souces">Souces</a>
+        <a clas="drink" href="#Drink">Drink</a>
+        <a clas="contact" href="#shop">Shop</a>
+        <a clas="contact" href="#Contact">Contact</a>
+    </nav>
+    <div class="icons">
+        <a href="login.html" class="fas fa-user" id="menu-bars"></a>
+        <i class="fas fa-search" id="search-icon"></i>
+        <a href="#" class="fas fa-heart"></a>
+        <a href="#" class="fas fa-shopping-cart"></a>
+    </div>
+</header>
+<form action="" id="search-form">
+    <input type="search" placeholder="Search here" name="" id="search-box">
+    <label for="search-box" class="fas fa-search"></label>
+    <i class="fas fa-times" id="close"></i>
+</form>
+<section class="home" id="home">
+    <div class="Tittle-home">Special food and drink today</div>
+    <div class="swiper mySwiper home-slider">
+        <div class="swiper-wrapper">
+            <!-- Mỗi slide swiper sẽ nằm trong một div có class "swiper-slide" -->
+            <div th:each="topMainFood : ${topMainFood}" >
+                <div class="swiper-slide">
+                    <div class="content">
+                        <h3 th:text="${topMainFood.foodName}"></h3>
+                        <p th:text="${topMainFood.foodDetail}"></p>
+                        <a href="#" class="btn">Xem thêm</a>
+                        <!-- Ảnh của mỗi slide -->
+                        <div class="image">
+                            <img th:src="@{${topMainFood.imageUrl}}" alt="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Điểm phân trang (pagination) -->
+        <div class="swiper-pagination"></div>
+    </div>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1, // Chỉ hiển thị 1 slide trên mỗi lần trượt
+            spaceBetween: 10, // Khoảng cách giữa các slide
+            // Các tùy chọn và sự kiện khác của Swiper
+        });
+    </script>
+</section>
+<section class="food" id="Food">
+    <h3 class="sub-heading">Our Main Food</h3>
+    <h1 class="heading">Popular Main Food</h1>
+    <div class="box-container">
+        <!-- Sử dụng vòng lặp th:each để lặp qua danh sách món ăn (foods) -->
+        <div th:each="food : ${mainFood}" class="box">
+            <a href="#" class="fas fa-heart"></a>
+            <a href="#" class="fas fa-shopping-cart"></a>
+            <img th:src="@{${food.imageUrl}}" alt="" />
+            <h3 th:text="${food.foodName}">Tasty food</h3>
+            <div class="stars">
+                <!-- Thêm mã lặp để hiển thị số lượng sao (stars) -->
+                <i th:each="star : ${#numbers.sequence(1, 5)}"
+                   th:class="${star <= food.vote} ? 'fas fa-star' : 'far fa-star'"></i>
+            </div>
+            <div class="check-in">
+                <p th:text="${food.price} + ' USD'"></p>
+                <a href="#" class="btn">Learn to cook</a>
+            </div>
+        </div>
+    </div>
+</section>
+<br>
+<br>
+<section class="dessert" id="Dessert">
+    <h3 class="sub-heading">Our dessert</h3>
+    <h1 class="heading">Popular dessert</h1>
+    <div class="box-container">
+        <!-- Sử dụng vòng lặp th:each để lặp qua danh sách món ăn (foods) -->
+        <div th:each="dessert : ${dessert}" class="box">
+            <a href="#" class="fas fa-heart"></a>
+            <a href="#" class="fas fa-shopping-cart"></a>
+            <img th:src="@{${dessert.imageUrl}}" alt="" />
+            <h3 th:text="${dessert.foodName}">Tasty food</h3>
+            <div class="stars">
+                <!-- Thêm mã lặp để hiển thị số lượng sao (stars) -->
+                <i th:each="star : ${#numbers.sequence(1, 5)}"
+                   th:class="${star <= dessert.vote} ? 'fas fa-star' : 'far fa-star'"></i>
+            </div>
+            <div class="check-in">
+                <p th:text="${dessert.price} + ' USD'"></p>
+                <a href="#" class="btn">Learn to cook</a>
+            </div>
+        </div>
+    </div>
+</section>
+<br>
+<br>
+<section class="souces" id="Souces">
+    <h3 class="sub-heading">Our souces</h3>
+    <h1 class="heading">Popular souces</h1>
+    <div class="box-container">
+        <!-- Sử dụng vòng lặp th:each để lặp qua danh sách món ăn (foods) -->
+        <div th:each="souces : ${souces}" class="box">
+            <a href="#" class="fas fa-heart"></a>
+            <a href="#" class="fas fa-shopping-cart"></a>
+            <img th:src="@{${souces.imageUrl}}" alt="" />
+            <h3 th:text="${souces.foodName}">Tasty food</h3>
+            <div class="stars">
+                <!-- Thêm mã lặp để hiển thị số lượng sao (stars) -->
+                <i th:each="star : ${#numbers.sequence(1, 5)}"
+                   th:class="${star <= souces.vote} ? 'fas fa-star' : 'far fa-star'"></i>
+            </div>
+            <div class="check-in">
+                <p th:text="${souces.price} + ' USD'">$15.46</p>
+                <a href="#" class="btn">Learn to cook</a>
+            </div>
+        </div>
+    </div>
+</section>
+<br>
+<br>
+<section class="drink" id="Drink">
+    <h3 class="sub-heading">Our drink</h3>
+    <h1 class="heading">Popular drink</h1>
+    <div class="box-container">
+        <!-- Sử dụng vòng lặp th:each để lặp qua danh sách món ăn (drink) -->
+        <div th:each="drink : ${drink}" class="box">
+            <a href="#" class="fas fa-heart"></a>
+            <a href="#" class="fas fa-shopping-cart"></a>
+            <img th:src="@{${drink.imageUrl}}" alt="" />
+            <h3 th:text="${drink.foodName}">Tasty food</h3>
+            <div class="stars">
+                <!-- Thêm mã lặp để hiển thị số lượng sao (stars) -->
+                <i th:each="star : ${#numbers.sequence(1, 5)}"
+                   th:class="${star <= drink.vote} ? 'fas fa-star' : 'far fa-star'"></i>
+            </div>
+            <div class="check-in">
+                <p th:text="${drink.price} + ' USD'">$15.46</p>
+                <a href="#" class="btn">Learn to cook</a>
+            </div>
+        </div>
+    </div>
+</section>
+<br>
+<br>
+<section class="contact" id="Contact">
+    <h3 class="sub-heading">About Us</h3>
+    <h1 class="heading">Why choose us</h1>
+    <div class="row">
+        <div class="image">
+            <img src="images/home-food1.png" alt="">
+        </div>
+        <div class="content">
+            <h3>Best food in the country</h3>
+            <p>ICanCook is a place where you can learn to cook the dishes, drinks, sauces
+                and desserts you want for free, in addition to text instructions, we also
+                give you an approach.
+            </p>
+            <p>With ICanCook, not only can you learn to cook, you can also buy spices,
+                ingredients or accessories for cooking. You can even buy dishes to
+                experience, then decide whether to learn to cook that dish or not.
+            </p>
+            <div class="icons-container">
+                <div class="icon">
+                    <i class="fas fa-shipping-fast"></i>
+                    <span>Free Delivery</span>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-dollar-sign"></i>
+                    <span>Easy payments</span>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-headset"></i>
+                    <span>24/7 Service</span>
+                </div>
+            </div>
+            <a href="#" class="btn">Learn More</a>
+        </div>
+    </div>
+</section>
+<section class="footer">
+    <div class="box-container">
+        <div class="box">
+            <h3>Customer Care</h3>
+            <a href="#">Trung tâm trợ giúp</a>
+            <a href="#">Hướng dẫn mua hàng</a>
+            <a href="#">Hướng dẫn xem cách nấu ăn</a>
+            <a href="#">Thanh toán</a>
+            <a href="#">Vận chuyển</a>
+            <a href="#">Trả hàng và hoàn tiền</a>
+            <a href="#">Chăm sóc khách hàng</a>
+            <a href="#">Chính sách bảo hành</a>
+        </div>
+        <div class="box" >
+            <h3>About ICanCook</h3>
+            <a href="#">Giới thiệu về ICanCook</a>
+            <a href="#">Tuyển dụng</a>
+            <a href="#">Điều khoản ICanCook</a>
+            <a href="#">Chính sách bảo mật</a>
+            <a href="#">Kênh đăng tải</a>
+            <a href="#">Đối tác ICanCook</a>
+            <a href="#">Liên hệ truyền thông</a>
+        </div>
+        <div class="box">
+            <div class="pay">
+                <h3>Payments</h3>
+                <div class="icon-pay">
+                    <i class="fab fa-cc-mastercard" style="color: black"></i>
+                    <i class="fab fa-cc-visa" style="color: #4040b0" ></i>
+                    <i class="fab fa-cc-paypal" style="color: #4040b0"></i>
+                </div>
+                <div class="icon-pay">
+                    <i class="fab fa-cc-paypal" style="color: #4040b0"></i>
+                    <i class="fab fa-cc-amex" style="color: #409db8"></i>
+                    <i class="fab fa-cc-mastercard" style="color: black"></i>
+                </div>
+            </div>
+            <div class="ship">
+                <h3>Shipping Unit</h3>
+                <div class="icon-pay">
+                    <i class="fab fa-cc-mastercard" style="color: black"></i>
+                    <i class="fab fa-cc-visa" style="color: #4040b0" ></i>
+                    <i class="fab fa-cc-paypal" style="color: #4040b0"></i>
+                </div>
+                <div class="icon-pay">
+                    <i class="fab fa-cc-paypal" style="color: #4040b0"></i>
+                    <i class="fab fa-cc-amex" style="color: #409db8"></i>
+                    <i class="fab fa-cc-mastercard" style="color: black"></i>
+                </div>
+                <div class="icon-pay">
+                    <i class="fab fa-cc-paypal" style="color: #4040b0"></i>
+                    <i class="fab fa-cc-amex" style="color: #409db8"></i>
+                    <i class="fab fa-cc-mastercard" style="color: black"></i>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <h3>Follow Us</h3>
+            <div class="icon-follow">
+                <i class="fab fa-facebook-f"></i>
+                <a href="#" >Facebook</a>
+            </div>
+            <div class="icon-follow">
+                <i class="fab fa-twitter"></i>
+                <a href="#">Twiter</a>
+            </div>
+            <div class="icon-follow">
+                <i class="fab fa-instagram"></i>
+                <a href="#">Instagram</a>
+            </div>
+            <div class="icon-follow">
+                <i class="fab fa-linkedin"></i>
+                <a href="#">Linkedin</a>
+            </div>
+        </div>
+    </div>
+    <div class="credit">copyright @ 2023 by<span> Vu Phat Dat</span></div>
+</section>
+<!--<script src="path/to/swiper.min.js"></script>-->
+<script src="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.js"></script>
+<script>
+    var swiper = new Swiper(".swiper-container", {
+        slidesPerView: 1,
+        spaceBetween: 10,
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+    });
+</script>
+</body>
+</html>
